@@ -15,15 +15,20 @@
        01  OPCION PIC 9.
        PROCEDURE DIVISION.
        MAIN-PROCEDURE.
-            DISPLAY "Bienvenido al Simulador de Cajero Automático".
-                DISPLAY "1. Consulta de Saldo".
-                DISPLAY "2. Depósito".
-                DISPLAY "3. Retiro".
-                DISPLAY "4. Salir".
-                ACCEPT OPCION.
 
-                PERFORM OPCIONES-CAJERO
-            STOP RUN.
+           PERFORM MENU UNTIL OPCION = 4.
+           STOP RUN.
+
+           MENU.
+
+                DISPLAY "Bienvenido al Simulador de Cajero Automático"
+                DISPLAY "1. Consulta de Saldo"
+                DISPLAY "2. Depósito"
+                DISPLAY "3. Retiro"
+                DISPLAY "4. Salir"
+                ACCEPT OPCION
+
+                PERFORM OPCIONES-CAJERO.
 
            OPCIONES-CAJERO.
            EVALUATE OPCION
@@ -36,7 +41,8 @@
                WHEN 4
                 DISPLAY "Gracias por usar el Simulador de Cajero "
                WHEN OTHER
-                DISPLAY "Opción no válida. Intente nuevamente".
+                DISPLAY "Opción no válida. Intente nuevamente"
+                PERFORM MENU.
 
            CONSULTAR-SALDO.
                DISPLAY "Saldo actual: $" SALDO.
